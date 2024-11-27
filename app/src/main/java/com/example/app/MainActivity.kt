@@ -2,7 +2,6 @@ package com.example.app
 import android.content.ContentValues
 import android.os.Bundle
 import android.provider.BaseColumns
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -24,7 +23,6 @@ import com.example.app.ui.theme.SQLiteProjectTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val dbHelper = FeedReaderDbHelper(this)
 
         enableEdgeToEdge()
@@ -49,7 +47,6 @@ class MainActivity : ComponentActivity() {
                         ButtonComposable(text = "Update") {
                             updateDB(dbHelper)
                         }
-
                     }
                 }
             }
@@ -62,10 +59,12 @@ fun insertDB(dbHelper: FeedReaderDbHelper) {
 
     val values = ContentValues().apply {
         put(FeedReaderContract.FeedEntry.COLUMN_NAME, "Product Name")
-        put(FeedReaderContract.FeedEntry.COLUMN_PRICE, 19.99)  // Exemple de prix
-        put(FeedReaderContract.FeedEntry.COLUMN_IMAGE, "image_url_here")  // URL de l'image
+        put(FeedReaderContract.FeedEntry.COLUMN_PRICE, 19.99)
+        put(FeedReaderContract.FeedEntry.COLUMN_IMAGE, "image_url_here")
         put(FeedReaderContract.FeedEntry.COLUMN_DESCRIPTION, "Product description here")
     }
+
+
 
     val newRowId = db?.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values)
 
